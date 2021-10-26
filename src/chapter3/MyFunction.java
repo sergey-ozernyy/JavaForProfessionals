@@ -7,6 +7,7 @@ import com.sun.tools.javac.Main;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class MyFunction {
@@ -49,7 +50,15 @@ public class MyFunction {
         return booleanList;
     }
 
-    
+    @FunctionalInterface
+    public interface MakeApple<T, U, R>{
+        R apply(T t, U u);
+    }
+
+    public Apple makeApple(){
+        MakeApple<Integer, String, Apple> c = Apple::new;
+        return c.apply(150, Color.GREEN.toString());
+    }
 
 
 }
